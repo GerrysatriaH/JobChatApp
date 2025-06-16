@@ -1,0 +1,81 @@
+<resources>
+    <string name="app_name">Job Chat</string>
+    <string name="landing_text">JobChat is here to help you find the perfect job that matches your skills and interests.</string>
+    <string name="login_text">Login</string>
+    <string name="logout_text">Logout</string>
+    <string name="sign_up_text">Sign Up</string>
+    <string name="login_page_text">Welcome Back</string>
+    <string name="register_page_text">Create An Account</string>
+    <string name="question_login">Don’t have an account ?</string>
+    <string name="question_register">Already have an account ?</string>
+    <string name="continue_text">Continue</string>
+    <string name="continue_with_google_text">Continue with google</string>
+    <string name="forgot_password">Forgot password ?</string>
+    <string name="hello_text">Halo,</string>
+    <string name="user_text">User</string>
+    <string name="history_text">Chat History</string>
+    <string name="new_chat">New Chat</string>
+    <string name="username_text">User Name</string>
+    <string name="username_email_text">username@gmail.com</string>
+    <string name="profil_picture_text">Profil Picture</string>
+    <string name="settings_text">Settings</string>
+    <string name="theme_text">Theme</string>
+    <string name="manage_chat_text">Manage Chat</string>
+    <string name="delete_all_chat_text">Delete All</string>
+    <string name="log_out_device_text">Log Out on this Device</string>
+    <string name="share_text">Share</string>
+    <string name="delete_chat_text">Delete Chat</string>
+    <string name="take_photo">Take Photo</string>
+    <string name="upload_file">Upload File</string>
+    <string name="close_preview">Close Preview</string>
+    <string name="preview_image">Preview Image</string>
+    <string name="empty_chat">There is no chat history available.</string>
+
+    <!-- Description Element -->
+    <string name="arrow_to_chat">Arrow to chat</string>
+    <string name="button_attach_desc">Button to attach image/document</string>
+    <string name="sent_button_desc">Button to send message</string>
+
+    <!-- Hint -->
+    <string name="email_address_hint">Email Address</string>
+    <string name="password_hint">Password</string>
+    <string name="chatbox_hint">Write a text here</string>
+
+    <!-- State -->
+    <string name="success">Success</string>
+    <string name="warning">Warning</string>
+    <string name="error">Error</string>
+
+    <!-- Dialog/Toast Message -->
+    <string name="error_api">Terjadi kesalahan. Silakan coba lagi.</string>
+    <string name="email_empty">Email tidak boleh kosong</string>
+    <string name="password_empty">Password tidak boleh kosong</string>
+    <string name="invalid_email">Format email tidak valid</string>
+    <string name="error_login">Gagal login, Periksa internet anda dan coba lagi.</string>
+    <string name="error_register">Gagal register, Periksa internet anda dan coba lagi.</string>
+    <string name="success_delete_all_chat">Berhasil menghapus semua riwayat chat.</string>
+    <string name="success_delete_chat">Berhasil menghapus chat.</string>
+    <string name="error_delete_all_chat">Gagal menghapus riwayat chat.</string>
+    <string name="error_delete_chat">Gagal menghapus chat.</string>
+    <string name="error_get_user_data">Gagal mengambil data pengguna.</string>
+    <string name="error_get_history_data">Gagal mengambil riwayat chat.</string>
+    <string name="error_get_chat_data">Gagal mengambil data chat.</string>
+    <string name="error_get_recommendation">Gagal mendapatkan rekomendasi.</string>
+    <string name="error_send_message">Gagal mengirim pesan.</string>
+    <string name="error_upload_file">Gagal mengunggah file.</string>
+    <string name="error_process_file">Gagal memproses file.</string>
+    <string name="error_read_file">Gagal membaca file.</string>
+    <string name="error_file">File tidak ditemukan.</string>
+    <string name="delete_all_chat">Apakah anda yakin ingin menghapus semua riwayat chat ?</string>
+    <string name="delete_chat">Apakah anda yakin ingin menghapus chat ini ?</string>
+
+    <!-- Dialog Title -->
+    <string name="title_delete_all_chat">Delete all chat</string>
+    <string name="title_delete_chat">Delete chat</string>
+
+    <!-- Dialog Button Text -->
+    <string name="oke">Oke</string>
+    <string name="yes">yes</string>
+    <string name="no">no</string>
+    <string name="back">Back</string>
+</resources>

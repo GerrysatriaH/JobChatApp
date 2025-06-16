@@ -1,0 +1,12 @@
+<resources xmlns:tools="http://schemas.android.com/tools">
+    <!-- Base application theme. -->
+    <style name="Base.Theme.JobBotApp" parent="Theme.Material3.Light.NoActionBar">
+        <item name="android:windowBackground">@android:color/white</item>
+        <item name="android:forceDarkAllowed" tools:targetApi="q">false</item>
+        <item name="actionOverflowMenuStyle">@style/MyOverflowMenuStyle</item>
+    </style>
+
+    <style name="MyOverflowMenuStyle" parent="Widget.AppCompat.PopupMenu.Overflow">
+        <item name="android:drawableTint">@android:color/white</item>
+    </style>
+</resources>
