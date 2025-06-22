@@ -10,8 +10,8 @@ import com.gerrysatria.jobbotapp.data.LoginRequest
 import com.gerrysatria.jobbotapp.databinding.ActivityLoginBinding
 import com.gerrysatria.jobbotapp.utils.State
 import com.gerrysatria.jobbotapp.utils.show
-import com.gerrysatria.jobbotapp.utils.showToast
 import com.gerrysatria.jobbotapp.utils.showDialog
+import com.gerrysatria.jobbotapp.utils.showDialogWithAction
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
 class LoginActivity : AppCompatActivity() {
@@ -58,13 +58,13 @@ class LoginActivity : AppCompatActivity() {
                 is State.Loading -> startLoadingState()
                 is State.Success -> {
                     finishLoadingState()
-                    showToast(this, state.data.message)
-
                     val userId = state.data.user.id
                     viewModel.saveUserId(userId)
-
-                    startActivity(Intent(this, HomeActivity::class.java))
-                    finish()
+                    showDialogWithAction(this, getString(R.string.success), state.data.message){
+                        startActivity(Intent(this, HomeActivity::class.java).apply {
+                            flags = Intent.FLAG_ACTIVITY_CLEAR_TASK or Intent.FLAG_ACTIVITY_NEW_TASK
+                        })
+                    }
                 }
                 is State.Error -> {
                     finishLoadingState()

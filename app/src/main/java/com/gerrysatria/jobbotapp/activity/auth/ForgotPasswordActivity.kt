@@ -10,6 +10,7 @@ import com.gerrysatria.jobbotapp.data.ForgotPasswordRequest
 import com.gerrysatria.jobbotapp.utils.State
 import com.gerrysatria.jobbotapp.utils.show
 import com.gerrysatria.jobbotapp.utils.showDialog
+import com.gerrysatria.jobbotapp.utils.showDialogWithAction
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
 class ForgotPasswordActivity : AppCompatActivity() {
@@ -50,9 +51,10 @@ class ForgotPasswordActivity : AppCompatActivity() {
                 is State.Loading -> startLoadingState()
                 is State.Success -> {
                     finishLoadingState()
-                    showDialog(this, getString(R.string.success), state.data.message)
-                    startActivity(Intent(this, LoginActivity::class.java))
-                    finish()
+                    showDialogWithAction(this, getString(R.string.success), state.data.message){
+                        startActivity(Intent(this, LoginActivity::class.java))
+                        finish()
+                    }
                 }
                 is State.Error -> {
                     finishLoadingState()

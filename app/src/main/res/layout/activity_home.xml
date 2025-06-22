@@ -30,6 +30,8 @@
         android:textSize="23sp"
         android:textStyle="bold"
         android:textColor="@color/white"
+        android:maxLines="1"
+        android:ellipsize="end"
         app:layout_constraintStart_toEndOf="@id/hello_text"
         app:layout_constraintTop_toTopOf="@id/hello_text"
         app:layout_constraintBottom_toBottomOf="@id/hello_text"/>

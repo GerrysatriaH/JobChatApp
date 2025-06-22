@@ -36,6 +36,16 @@ fun showDialog(context: Context, title: String, message: String){
         }.show()
 }
 
+fun showDialogWithAction(context: Context, title: String, message: String, positiveAction: () -> Unit){
+    MaterialAlertDialogBuilder(context)
+        .setTitle(title)
+        .setMessage(message)
+        .setPositiveButton(context.getString(R.string.oke)) { _, _ ->
+            positiveAction.invoke()
+        }
+        .show()
+}
+
 fun formatDate(dateString: String): String {
     return try {
         val inputFormat = SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss", Locale.getDefault())

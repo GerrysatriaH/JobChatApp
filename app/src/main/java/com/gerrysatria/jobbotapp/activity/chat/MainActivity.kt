@@ -59,7 +59,9 @@ class MainActivity : AppCompatActivity() {
                                     is State.Success -> {
                                         progressBar.show(false)
                                         showDialog(this@MainActivity, getString(R.string.success), getString(R.string.success_delete_chat))
-                                        startActivity(Intent(this@MainActivity, HomeActivity::class.java))
+                                        startActivity(Intent(this@MainActivity, HomeActivity::class.java).apply {
+                                            flags = Intent.FLAG_ACTIVITY_CLEAR_TASK or Intent.FLAG_ACTIVITY_NEW_TASK
+                                        })
                                         finish()
                                     }
                                     is State.Error -> {
@@ -217,7 +219,6 @@ class MainActivity : AppCompatActivity() {
                     topBar.root.visibility = View.VISIBLE
                     previewFileLayout.root.visibility = View.GONE
                 }
-
                 val mimeType = contentResolver.getType(it)
                 if (mimeType?.startsWith("image/") == true) previewFileLayout.imagePreview.setImageURI(it)
                 else previewFileLayout.imagePreview.setImageResource(R.drawable.ic_file_preview)

@@ -6,11 +6,14 @@ import androidx.appcompat.app.AppCompatActivity
 import com.gerrysatria.jobbotapp.R
 import com.gerrysatria.jobbotapp.activity.LandingActivity
 import com.gerrysatria.jobbotapp.activity.auth.AuthViewModel
+import com.gerrysatria.jobbotapp.activity.home.HomeActivity
 import com.gerrysatria.jobbotapp.utils.showDialog
 import com.gerrysatria.jobbotapp.databinding.ActivityProfileBinding
 import com.gerrysatria.jobbotapp.utils.State
 import com.gerrysatria.jobbotapp.utils.USER_ID_KEY
 import com.gerrysatria.jobbotapp.utils.dialogDeleteAction
+import com.gerrysatria.jobbotapp.utils.show
+import com.gerrysatria.jobbotapp.utils.showDialogWithAction
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
 class ProfileActivity : AppCompatActivity() {
@@ -37,14 +40,18 @@ class ProfileActivity : AppCompatActivity() {
     private fun getUserData() {
         viewModel.getUserById(userId!!).observe(this) { state ->
             when (state) {
-                is State.Loading -> {}
+                is State.Loading -> binding.progressBar.show(true)
                 is State.Success -> {
+                    binding.progressBar.show(false)
                     binding.apply {
                         userName.text = state.data.username
                         userEmail.text = state.data.email
                     }
                 }
-                is State.Error -> showDialog(this, getString(R.string.error), getString(R.string.error_get_user_data))
+                is State.Error -> {
+                    binding.progressBar.show(false)
+                    showDialog(this, getString(R.string.error), getString(R.string.error_get_user_data))
+                }
             }
         }
     }
@@ -54,9 +61,19 @@ class ProfileActivity : AppCompatActivity() {
             dialogDeleteAction(this, getString(R.string.title_delete_all_chat), getString(R.string.delete_all_chat)){
                 viewModel.deleteAllHistoryChats(userId!!).observe(this) { state ->
                     when(state){
-                        is State.Loading -> {}
-                        is State.Success -> showDialog(this, getString(R.string.success), getString(R.string.success_delete_all_chat))
-                        is State.Error -> showDialog(this, getString(R.string.error), getString(R.string.error_delete_all_chat))
+                        is State.Loading -> binding.progressBar.show(true)
+                        is State.Success -> {
+                            binding.progressBar.show(false)
+                            showDialogWithAction(this, getString(R.string.success), getString(R.string.success_delete_all_chat)){
+                                startActivity(Intent(this, HomeActivity::class.java).apply {
+                                    flags = Intent.FLAG_ACTIVITY_CLEAR_TASK or Intent.FLAG_ACTIVITY_NEW_TASK
+                                })
+                            }
+                        }
+                        is State.Error -> {
+                            binding.progressBar.show(false)
+                            showDialog(this, getString(R.string.error), getString(R.string.error_delete_all_chat))
+                        }
                     }
                 }
             }
@@ -66,8 +83,9 @@ class ProfileActivity : AppCompatActivity() {
     private fun logout() {
         binding.btnLogOut.setOnClickListener {
             authViewModel.clearUserId()
-            val intent = Intent(this, LandingActivity::class.java)
-            intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
+            val intent = Intent(this, LandingActivity::class.java).apply {
+                flags = Intent.FLAG_ACTIVITY_CLEAR_TASK or Intent.FLAG_ACTIVITY_NEW_TASK
+            }
             startActivity(intent)
         }
     }

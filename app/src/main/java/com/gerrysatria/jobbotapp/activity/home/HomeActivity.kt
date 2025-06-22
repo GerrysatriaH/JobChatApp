@@ -5,6 +5,7 @@ import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.gerrysatria.jobbotapp.R
+import com.gerrysatria.jobbotapp.activity.LandingActivity
 import com.gerrysatria.jobbotapp.activity.profile.ProfileActivity
 import com.gerrysatria.jobbotapp.activity.chat.MainActivity
 import com.gerrysatria.jobbotapp.activity.profile.ProfileViewModel
@@ -15,6 +16,7 @@ import com.gerrysatria.jobbotapp.utils.State
 import com.gerrysatria.jobbotapp.utils.USER_ID_KEY
 import com.gerrysatria.jobbotapp.utils.show
 import com.gerrysatria.jobbotapp.utils.showDialog
+import com.gerrysatria.jobbotapp.utils.showDialogWithAction
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
 class HomeActivity : AppCompatActivity() {
@@ -65,7 +67,12 @@ class HomeActivity : AppCompatActivity() {
                 }
                 is State.Error -> {
                     binding.progressBar.show(false)
-                    showDialog(this, getString(R.string.error), getString(R.string.error_get_user_data))
+                    showDialogWithAction(this, getString(R.string.error), getString(R.string.error_get_user_data)){
+                        viewModel.clearUserId()
+                        startActivity(Intent(this@HomeActivity, LandingActivity::class.java).apply {
+                            flags = Intent.FLAG_ACTIVITY_CLEAR_TASK or Intent.FLAG_ACTIVITY_NEW_TASK
+                        })
+                    }
                 }
             }
         }

@@ -9,8 +9,8 @@ import com.gerrysatria.jobbotapp.databinding.ActivityRegisterBinding
 import com.gerrysatria.jobbotapp.utils.State
 import com.gerrysatria.jobbotapp.utils.show
 import com.gerrysatria.jobbotapp.utils.showDialog
-import com.gerrysatria.jobbotapp.utils.showToast
 import com.gerrysatria.jobbotapp.R
+import com.gerrysatria.jobbotapp.utils.showDialogWithAction
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
 class RegisterActivity : AppCompatActivity() {
@@ -56,9 +56,10 @@ class RegisterActivity : AppCompatActivity() {
                 is State.Loading -> startLoadingState()
                 is State.Success -> {
                     finishLoadingState()
-                    showToast(this, state.data.message)
-                    startActivity(Intent(this, LoginActivity::class.java))
-                    finish()
+                    showDialogWithAction(this, getString(R.string.success), state.data.message){
+                        startActivity(Intent(this, LoginActivity::class.java))
+                        finish()
+                    }
                 }
                 is State.Error -> {
                     finishLoadingState()
